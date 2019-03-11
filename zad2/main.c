@@ -90,7 +90,9 @@ int main(int args, char *argv[]) {
                     if (newTable[j] != NULL) free(newTable[j]);
                 }
                 free(newTable);
+                newTable = NULL;
             }
+
             size = _convert_to_int(argv[++i]);
             if (size > 0) {
                 newTable = init_array((size_t) size);
