@@ -4,18 +4,20 @@
 
 #include "lib.h"
 #include <stdio.h>
+#include <fcntl.h>
 
-char* setup_temp_file(char* name) {
-    char *toreturn=calloc(64, sizeof(char));
-    sprintf(toreturn,"/tmp/%s",name);
+
+char *setup_temp_file(char *name) {
+    char *toreturn = calloc(64 + strlen(name), sizeof(char));
+    sprintf(toreturn, "/tmp/%s", name);
     return toreturn;
 }
 
 //utworzenie tablicy wskaźników w której będą przechowywane wskaźniki na bloki pamięci zawierające wyniki przeszukiwań,
 char **init_array(size_t size) {
     char **table = calloc(size, sizeof(char *));
-    for(int i=0;i<size;i++){
-        table[i]=NULL;
+    for (int i = 0; i < size; i++) {
+        table[i] = NULL;
     }
     return table;
 }
@@ -29,13 +31,13 @@ struct DirFile *set_dir_file(char *newDir, char *newFile) {
 }
 
 // przeprowadzenie przeszukania tego katalogu i zapisanie wyniku poszukiwania w pliku tymczasowym
-char* search(struct DirFile *dirAndFile,char* tmpname) {
+char *search(struct DirFile *dirAndFile, char *tmpname) {
     char *dir = dirAndFile->dir;
     char *file = dirAndFile->file;
 
-    char* toreturn=setup_temp_file(tmpname);
+    char *toreturn = setup_temp_file(tmpname);
     char *command = calloc((128 + strlen(dir) + strlen(file) + strlen(toreturn)), sizeof(char));
-    sprintf(command, "find %s -name %s>%s 2> /dev/null", dir, file,toreturn);
+    sprintf(command, "find %s -name %s>%s 2> /dev/null", dir, file, toreturn);
     system(command);
 
     free(command);
@@ -44,9 +46,8 @@ char* search(struct DirFile *dirAndFile,char* tmpname) {
 
 // zarezerwowanie bloku pamięci o rozmiarze odpowiadającym rozmiarowi pliku tymczasowego i zapisanie w tej pamięci jego
 // zawartości, ustawienie w tablicy wskaźników wskazania na ten blok, funkcja powinna zwrócić indeks stworzonego bloku w tablicy,
-int insert_from_tmp_file(char **array, unsigned int size, char* tmp_file_name) {
-    FILE *tmp_file = fopen(tmp_file_name, "r");
-    int fd = fileno(tmp_file);
+int insert_from_tmp_file(char **array, unsigned int size, char *tmp_file_name) {
+    int fd = open(tmp_file_name, O_RDONLY);
 
     off_t sz = lseek(fd, 0, SEEK_END);
     lseek(fd, 0, SEEK_SET);
@@ -65,7 +66,7 @@ int insert_from_tmp_file(char **array, unsigned int size, char* tmp_file_name) {
     }
 
     array[i] = new_block;
-    fclose(tmp_file);
+    close(fd);
     return i;
 }
 
@@ -73,7 +74,7 @@ int insert_from_tmp_file(char **array, unsigned int size, char* tmp_file_name) {
 void remove_block(char **array, unsigned int size, unsigned int index) {
     if (index < size && array[index] != NULL) {
         free(array[index]);
-        array[index]=NULL;
+        array[index] = NULL;
     }
 }
 

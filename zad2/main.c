@@ -7,11 +7,11 @@
 #include <sys/times.h>
 
 #ifdef DLL
-
 #include "../zad3a/libdll.h"
-
 #else
+
 #include "../zad1/lib.h"
+
 #endif
 
 static clock_t st_time;
@@ -36,43 +36,35 @@ char *stop_clock() {
     return return_value;
 }
 
-char *setup_report_file(char *name) {
-    char *string = calloc(strlen(name) + 6, sizeof(char));
-    sprintf(string, "raport%s", name);
-    return string;
-}
-
 void write_to_report_file(char *filepath, char *operation, char *stopclock) {
     FILE *ofile = fopen(filepath, "a");
 
     if (strcmp(operation, "none") != 0) {
-        fprintf(ofile, operation);
-        fprintf(ofile, "\t");
+        fprintf(ofile, "%s\t", operation);
     }
-    fprintf(ofile, stopclock);
+    fprintf(ofile, "%s", stopclock);
     printf("%s %s", operation, stopclock);
     fclose(ofile);
 }
 
 long _convert_to_int(char *string) {
-    char *temp_string = calloc(strlen(string), sizeof(char));
+    char *temp_string;
     long converted = strtol(string, &temp_string, 10);
+    long return_value = strcmp(temp_string, "") == 0 ? converted : TYPE_MISMATCH;
 
-    long return_value = strcmp(temp_string, string) == 0 ? TYPE_MISMATCH : converted;
     return return_value;
 }
 
-
 int main(int args, char *argv[]) {
-    void *handle = NULL;
 #ifdef DLL
+    void *handle = NULL;
     handle = dll_init();
 #endif
-    size_t size = (size_t) _convert_to_int(argv[1]);
+    long size = _convert_to_int(argv[1]);
     char **newTable = NULL;
 
-    if (size >= 0) {
-        newTable = init_array(size);
+    if (size > 0) {
+        newTable = init_array((size_t) size);
     } else {
         fprintf(stderr, "Bledny rozmiar tablicy, podano %s", argv[1]);
         return ARGUMENT_ERROR;
@@ -84,6 +76,8 @@ int main(int args, char *argv[]) {
     char *tmpname = NULL;
     struct DirFile *dirfile = NULL;
 
+    int returnval = 0;
+
     start_clock();
     for (int i = 2; i < args - 1; i++) {
         if (strcmp(argv[i], "create") == 0) {
@@ -93,10 +87,16 @@ int main(int args, char *argv[]) {
                 }
                 free(newTable);
             }
-            newTable = init_array((size_t) argv[i + 1]);
+            size = _convert_to_int(argv[++i]);
+            if (size > 0) {
+                newTable = init_array((size_t) size);
+            } else {
+                fprintf(stderr, "Bledny argument do operacji na pozycji %d", i);
+                returnval = TYPE_MISMATCH;
+                i = args;
+            }
         } else if (strcmp(argv[i], "search") == 0) {
             if (i + 3 < args) {
-                //if (tmpname != NULL) free(tmpname);
                 if (dirfile != NULL) free(dirfile);
                 if (tmp_file != NULL) free(tmp_file);
 
@@ -107,7 +107,8 @@ int main(int args, char *argv[]) {
                 tmp_file = search(dirfile, tmpname);
             } else {
                 fprintf(stderr, "Bledna liczba argumentów do pozycji %d", i);
-                return ARGUMENT_ERROR;
+                returnval = ARGUMENT_ERROR;
+                i = args;
             }
         } else if (strcmp(argv[i], "remove") == 0) {
             arg = _convert_to_int(argv[++i]);
@@ -115,11 +116,12 @@ int main(int args, char *argv[]) {
                 remove_block(newTable, size, arg);
             } else {
                 fprintf(stderr, "Bledny argument do operacji na pozycji %d", i);
-                return TYPE_MISMATCH;
+                returnval = TYPE_MISMATCH;
+                i = args;
             }
         } else if (strcmp(argv[i], "output") == 0) {
             if (report_file != NULL) free(report_file);
-            report_file = setup_report_file(argv[++i]);
+            report_file = argv[++i];
         } else if (strcmp(argv[i], "insert") == 0) {
             if (tmp_file != NULL) {
                 insert_from_tmp_file(newTable, size, tmp_file);
@@ -129,8 +131,9 @@ int main(int args, char *argv[]) {
                        dirfile->dir);
                        */
             } else {
-                fputs("Jeszcze nie dokonano nowego wyszukania!", stderr);
-                return ARGUMENT_ERROR;
+                fprintf(stderr, "Jeszcze nie dokonano nowego wyszukania! Błąd na pozycji %d", i);
+                returnval = ARGUMENT_ERROR;
+                i = args;
             }
         } else if (strcmp(argv[i], "write") == 0) {
             char *stopclock = stop_clock();
@@ -139,18 +142,25 @@ int main(int args, char *argv[]) {
             start_clock();
         } else {
             fprintf(stderr, "Bledny argument do operacji na pozycji %d", i);
-            return ARGUMENT_ERROR;
+            returnval = ARGUMENT_ERROR;
+            i = args;
         }
     }
 
+    if (tmp_file != NULL)
+        free(tmp_file);
     if (dirfile != NULL)
         free(dirfile);
-    if (newTable != NULL)
+    if (newTable != NULL) {
+        for (int j = 0; j < size; j++) {
+            if (newTable[j] != NULL) free(newTable[j]);
+        }
         free(newTable);
+    }
+#ifdef DLL
     if (handle != NULL)
         dlclose(handle);
-    if (report_file != NULL)
-        free(report_file);
+#endif
 
-    return 0;
+    return returnval;
 }

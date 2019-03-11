@@ -14,6 +14,7 @@ void *_return_if_correct(void *handle, char *command) {
     void *result = dlsym(handle, command);
     if (result == NULL) {
         fprintf(stderr, "NIE ISTNIEJE METODA %s", command);
+        exit(OTHER_ERROR);
     }
     return result;
 }
