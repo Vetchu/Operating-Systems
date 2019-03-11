@@ -8,7 +8,7 @@
 
 
 char *setup_temp_file(char *name) {
-    char *toreturn = calloc(64 + strlen(name), sizeof(char));
+    char *toreturn = calloc(6 + strlen(name), sizeof(char));
     sprintf(toreturn, "/tmp/%s", name);
     return toreturn;
 }
@@ -35,20 +35,22 @@ char *search(struct DirFile *dirAndFile, char *tmpname) {
     char *dir = dirAndFile->dir;
     char *file = dirAndFile->file;
 
-    char *toreturn = setup_temp_file(tmpname);
-    char *command = calloc((128 + strlen(dir) + strlen(file) + strlen(toreturn)), sizeof(char));
-    sprintf(command, "find %s -name %s>%s 2> /dev/null", dir, file, toreturn);
+    char *command = calloc((128 + strlen(dir) + strlen(file) + strlen(tmpname)), sizeof(char));
+    sprintf(command, "find %s -name %s>%s 2> /dev/null", dir, file, tmpname);
     system(command);
 
     free(command);
-    return toreturn;
+    return tmpname;
 }
 
 // zarezerwowanie bloku pamięci o rozmiarze odpowiadającym rozmiarowi pliku tymczasowego i zapisanie w tej pamięci jego
 // zawartości, ustawienie w tablicy wskaźników wskazania na ten blok, funkcja powinna zwrócić indeks stworzonego bloku w tablicy,
 int insert_from_tmp_file(char **array, unsigned int size, char *tmp_file_name) {
     int fd = open(tmp_file_name, O_RDONLY);
-
+    if (fd < 3) {
+        close(fd);
+        return -1;
+    }
     off_t sz = lseek(fd, 0, SEEK_END);
     lseek(fd, 0, SEEK_SET);
 

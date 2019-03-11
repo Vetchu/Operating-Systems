@@ -34,25 +34,25 @@ IF (${Test2})
             COMMAND echo "Malo Plikow" >> ${outputfile}
             )
     add_custom_command(TARGET static POST_BUILD
-            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/static 10 search /etc/X11 xinitrc tmp search /var/log te* tmp output ${outputfile} write search insert write insert remove 0 remove 1 write remove
+            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/static 10 search /etc/X11 xinitrc tmp search /var/log te* tmp output ${outputfile} write search insert tmp write insert remove 0 remove 1 write remove
             )
     add_custom_command(TARGET static POST_BUILD
             COMMAND echo "Srednio Plikow" >> ${outputfile}
             )
     add_custom_command(TARGET static POST_BUILD
-            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/static 10 search /etc/ a* tmp search /var/ c tmp output ${outputfile} write search insert search /etc/ a* tmp insert write insert remove 0 write remove
+            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/static 10 search /etc/ a* tmp search /var/ c tmp output ${outputfile} write search insert tmp search /etc/ a* tmp insert tmp write insert remove 0 write remove
             )
     add_custom_command(TARGET static POST_BUILD
             COMMAND echo "Duzo Plikow" >> ${outputfile}
             )
     add_custom_command(TARGET static POST_BUILD
-            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/static 10 search / xinitrc tmp search / t* tmp output ${outputfile} write search insert write insert remove 0 write remove
+            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/static 10 search / xinitrc tmp search / t* tmp output ${outputfile} write search insert tmp write insert remove 0 write remove
             )
     add_custom_command(TARGET static POST_BUILD
             COMMAND echo "Dodaj/Usun bloki" >> ${outputfile}
             )
     add_custom_command(TARGET static POST_BUILD
-            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/static 10 search /etc/X11 xinitrc tmp insert search /var/log te* tmp insert search /etc/X11 xinitrc tmp insert search /var/log te* tmp insert search /etc/X11 xinitrc tmp insert search /var/log te* tmp insert output ${outputfile} write search remove 0 remove 1 remove 2 remove 3 remove 4 remove 5 remove 6 write remove
+            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/static 10 search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp output ${outputfile} write insert remove 0 remove 1 remove 2 remove 3 remove 4 remove 5 remove 6 write remove
             )
 ENDIF()
 
@@ -70,26 +70,26 @@ IF (${Test3})
             COMMAND echo "Malo Plikow" >> ${outputfile}
             )
     add_custom_command(TARGET ${linktype} POST_BUILD
-            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${linktype} 10 search /etc/X11 xinitrc tmp search /var/log te* tmp output ${soutput} write search insert write insert remove 0 remove 1 write remove
+            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${linktype} 10 search /etc/X11 xinitrc tmp search /var/log te* tmp output ${soutput} write search insert tmp write insert remove 0 remove 1 write remove
             )
     add_custom_command(TARGET ${linktype}  POST_BUILD
             COMMAND echo "Srednio Plikow" >> ${outputfile}
             )
     add_custom_command(TARGET ${linktype} POST_BUILD
-            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${linktype} 10 search /etc/ a* tmp search /var/ c tmp output ${soutput} write search insert search /etc/ a* tmp insert write insert remove 0 write remove
+            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${linktype} 10 search /etc/ a* tmp search /var/ c tmp output ${soutput} write search insert tmp search /etc/ a* tmp insert tmp write insert remove 0 write remove
             )
     add_custom_command(TARGET ${linktype}  POST_BUILD
             COMMAND echo "Duzo Plikow" >> ${outputfile}
             )
     add_custom_command(TARGET ${linktype} POST_BUILD
-            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${linktype} 10 search / xinitrc tmp search / t* tmp output ${soutput} write search insert write insert remove 0 write remove
+            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${linktype} 10 search / xinitrc tmp search / t* tmp output ${soutput} write search insert tmp write insert remove 0 write remove
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
             )
     add_custom_command(TARGET ${linktype}  POST_BUILD
             COMMAND echo "Dodaj/Usun bloki" >> ${outputfile}
             )
     add_custom_command(TARGET  ${linktype} POST_BUILD
-            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${linktype} 10 search /etc/X11 xinitrc tmp insert search /var/log te* tmp insert search /etc/X11 xinitrc tmp insert search /var/log te* tmp insert search /etc/X11 xinitrc tmp insert search /var/log te* tmp insert output ${soutput} write search remove 0 remove 1 remove 2 remove 3 remove 4 remove 5 remove 6 write remove
+            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${linktype} 10 search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp output ${soutput} write insert remove 0 remove 1 remove 2 remove 3 remove 4 remove 5 remove 6 write remove
             )
 endforeach (linktype)
 ENDIF()

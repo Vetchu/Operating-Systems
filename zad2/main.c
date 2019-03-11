@@ -66,14 +66,13 @@ int main(int args, char *argv[]) {
     if (size > 0) {
         newTable = init_array((size_t) size);
     } else {
-        fprintf(stderr, "Bledny rozmiar tablicy, podano %s", argv[1]);
+        fprintf(stderr, "Bledny rozmiar tablicy, podano %s\n", argv[1]);
         return ARGUMENT_ERROR;
     }
 
     long arg = 0;
     char *tmp_file = NULL;
     char *report_file = NULL;
-    char *tmpname = NULL;
     struct DirFile *dirfile = NULL;
 
     int returnval = 0;
@@ -91,7 +90,7 @@ int main(int args, char *argv[]) {
             if (size > 0) {
                 newTable = init_array((size_t) size);
             } else {
-                fprintf(stderr, "Bledny argument do operacji na pozycji %d", i);
+                fprintf(stderr, "Bledny argument do operacji na pozycji %d\n", i);
                 returnval = TYPE_MISMATCH;
                 i = args;
             }
@@ -102,11 +101,11 @@ int main(int args, char *argv[]) {
 
                 char *dir = argv[++i];
                 char *file = argv[++i];
-                tmpname = argv[++i];
                 dirfile = set_dir_file(dir, file);
-                tmp_file = search(dirfile, tmpname);
+                tmp_file = setup_temp_file(argv[++i]);
+                search(dirfile, tmp_file);
             } else {
-                fprintf(stderr, "Bledna liczba argumentów do pozycji %d", i);
+                fprintf(stderr, "Bledna liczba argumentów do pozycji %d\n", i);
                 returnval = ARGUMENT_ERROR;
                 i = args;
             }
@@ -115,7 +114,7 @@ int main(int args, char *argv[]) {
             if (arg != TYPE_MISMATCH) {
                 remove_block(newTable, size, arg);
             } else {
-                fprintf(stderr, "Bledny argument do operacji na pozycji %d", i);
+                fprintf(stderr, "Bledny argument do operacji na pozycji %d\n", i);
                 returnval = TYPE_MISMATCH;
                 i = args;
             }
@@ -124,29 +123,42 @@ int main(int args, char *argv[]) {
             report_file = argv[++i];
         } else if (strcmp(argv[i], "insert") == 0) {
             if (tmp_file != NULL) {
-                insert_from_tmp_file(newTable, size, tmp_file);
+                free(tmp_file);
+                tmp_file = setup_temp_file(argv[++i]);
+                if (insert_from_tmp_file(newTable, size, tmp_file) < 0) {
+                    fprintf(stderr, "Nie można otworzyć pliku docelowego! Błąd na pozycji %d\n", i);
+                    returnval = OTHER_ERROR;
+                    i = args;
+                }
                 /*
                 printf("Wpisano do bloku: %d wyniki wyszukiwania w: %s\n",
                        insert_from_tmp_file(newTable, size, tmp_file),
                        dirfile->dir);
                        */
             } else {
-                fprintf(stderr, "Jeszcze nie dokonano nowego wyszukania! Błąd na pozycji %d", i);
+                fprintf(stderr, "Jeszcze nie dokonano nowego wyszukania! Błąd na pozycji %d\n", i);
                 returnval = ARGUMENT_ERROR;
                 i = args;
             }
         } else if (strcmp(argv[i], "write") == 0) {
-            char *stopclock = stop_clock();
-            write_to_report_file(report_file, argv[++i], stopclock);
-            free(stopclock);
-            start_clock();
+            if (report_file != NULL) {
+                char *stopclock = stop_clock();
+                write_to_report_file(report_file, argv[++i], stopclock);
+                free(stopclock);
+                start_clock();
+            } else {
+                fprintf(stderr, "Jeszcze nie wybrano pliku wyjsciowego! Błąd na pozycji %d\n", i);
+                returnval = ARGUMENT_ERROR;
+                i = args;
+            }
         } else {
-            fprintf(stderr, "Bledny argument do operacji na pozycji %d", i);
+            fprintf(stderr, "Bledny argument do operacji na pozycji %d\n", i);
             returnval = ARGUMENT_ERROR;
             i = args;
         }
     }
 
+    free(stop_clock());
     if (tmp_file != NULL)
         free(tmp_file);
     if (dirfile != NULL)
