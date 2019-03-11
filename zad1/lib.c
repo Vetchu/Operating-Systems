@@ -46,7 +46,8 @@ char* search(struct DirFile *dirAndFile,char* tmpname) {
 // zarezerwowanie bloku pamięci o rozmiarze odpowiadającym rozmiarowi pliku tymczasowego i zapisanie w tej pamięci jego
 // zawartości, ustawienie w tablicy wskaźników wskazania na ten blok, funkcja powinna zwrócić indeks stworzonego bloku w tablicy,
 int insert_from_tmp_file(char **array, unsigned int size, char* tmp_file_name) {
-    int fd =fileno(fopen(tmp_file_name,"r"));
+    FILE *tmp_file = fopen(tmp_file_name, "r")
+    int fd = fileno(tmp_file);
 
     off_t sz = lseek(fd, 0, SEEK_END);
     lseek(fd, 0, SEEK_SET);
@@ -65,7 +66,7 @@ int insert_from_tmp_file(char **array, unsigned int size, char* tmp_file_name) {
     }
 
     array[i] = new_block;
-
+    fclose(tmp_file);
     return i;
 }
 
