@@ -3,11 +3,18 @@ project(zestaw1 C)
 set(CMAKE_C_FLAGS "-std=gnu99")
 set(CMAKE_C_STANDARD 99)
 
-if (NOT Optim)
-    set(Optim -O2)
+set(Optim -O2)
+option(Optim0 OFF)
+option(Optims OFF)
+
+if (${Optim0})
+    set(Optim -O0)
+elseif (${Optims})
+    set(Optim -Os)
+else ()
+
 endif ()
 
-option(Optim "Optim" -O2)
 option(Test2 "Test2")
 option(Test3 "Test3")
 
