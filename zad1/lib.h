@@ -25,5 +25,4 @@ int insert_from_tmp_file(char **array, unsigned int size, char* tmp_file);
 void remove_block(char **array, unsigned int size, unsigned int index);
 long _convert_to_int(char *string);
 
-
 #endif //ZAD1_LIBRARY_H

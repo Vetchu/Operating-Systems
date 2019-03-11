@@ -10,6 +10,14 @@ char* (*_search)(struct DirFile *dirAndFile,char* tmpfile);
 int (*_insert_from_tmp_file)(char **array, unsigned int size, char *tmp_file);
 void (*_remove_block)(char **array, unsigned int size, unsigned int index);
 
+void *_return_if_correct(void *handle, char *command) {
+    void *result = dlsym(handle, command);
+    if (result == NULL) {
+        fprintf(stderr, "NIE ISTNIEJE METODA %s", command);
+    }
+    return result;
+}
+
 void *dll_init() {
     void *handle = dlopen("./libshared_find.so", RTLD_LAZY);
     if (handle == NULL) {
@@ -17,12 +25,12 @@ void *dll_init() {
         exit(OTHER_ERROR);
     }
 
-    _setup_temp_file = dlsym(handle, "setup_temp_file");
-    _init_array = dlsym(handle, "init_array");
-    _set_dir_file = dlsym(handle, "set_dir_file");
-    _search = dlsym(handle, "search");
-    _insert_from_tmp_file = dlsym(handle, "insert_from_tmp_file");
-    _remove_block = dlsym(handle, "remove_block");
+    _setup_temp_file = _return_if_correct(handle, "setup_temp_file");
+    _init_array = _return_if_correct(handle, "init_array");
+    _set_dir_file = _return_if_correct(handle, "set_dir_file");
+    _search = _return_if_correct(handle, "search");
+    _insert_from_tmp_file = _return_if_correct(handle, "insert_from_tmp_file");
+    _remove_block = _return_if_correct(handle, "remove_block");
     return handle;
 }
 
