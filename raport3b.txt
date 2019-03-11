@@ -1,0 +1,152 @@
+TestOptimizeLevel=-O0
+Real	User	System	Children user	Children system
+TEST shared
+Malo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	0.02         0.00         0.00         0.00          0.00
+Srednio Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.01         0.00         0.00         0.00          0.00
+search	0.05         0.00         0.00         0.02          0.02
+Duzo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	8.62         0.00         0.00         2.75          5.19
+Dodaj/Usun bloki
+remove	0.00         0.00         0.00         0.00          0.00
+insert	0.04         0.00         0.00         0.01          0.01
+TEST dynamic
+Malo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	0.02         0.00         0.00         0.00          0.00
+Srednio Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.01         0.00         0.00         0.01          0.00
+search	0.05         0.00         0.00         0.01          0.02
+Duzo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	8.39         0.00         0.00         2.67          5.19
+Dodaj/Usun bloki
+remove	0.00         0.00         0.00         0.00          0.00
+insert	0.05         0.00         0.00         0.02          0.00
+TEST static
+Malo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	0.01         0.00         0.00         0.00          0.00
+Srednio Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.01         0.00         0.00         0.01          0.01
+search	0.05         0.00         0.00         0.01          0.02
+Duzo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	8.44         0.00         0.00         2.68          5.18
+Dodaj/Usun bloki
+remove	0.00         0.00         0.00         0.00          0.00
+insert	0.04         0.00         0.00         0.02          0.01
+
+TestOptimizeLevel=-O2
+Real	User	System	Children user	Children system
+TEST shared
+Malo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	0.01         0.00         0.00         0.00          0.00
+Srednio Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.01         0.00         0.00         0.01          0.00
+search	0.04         0.00         0.00         0.00          0.03
+Duzo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	8.20         0.00         0.00         2.58          5.16
+Dodaj/Usun bloki
+remove	0.00         0.00         0.00         0.00          0.00
+insert	0.04         0.00         0.00         0.02          0.01
+TEST dynamic
+Malo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	0.01         0.00         0.00         0.00          0.00
+Srednio Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.01         0.00         0.00         0.00          0.00
+search	0.05         0.00         0.00         0.02          0.02
+Duzo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	8.04         0.00         0.00         2.73          4.91
+Dodaj/Usun bloki
+remove	0.00         0.00         0.00         0.00          0.00
+insert	0.04         0.00         0.00         0.02          0.00
+TEST static
+Malo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	0.02         0.00         0.00         0.00          0.00
+Srednio Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.01         0.00         0.00         0.00          0.01
+search	0.04         0.00         0.00         0.01          0.02
+Duzo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	8.03         0.00         0.00         2.69          4.93
+Dodaj/Usun bloki
+remove	0.00         0.00         0.00         0.00          0.00
+insert	0.03         0.00         0.00         0.02          0.01
+
+TestOptimizeLevel=-Os
+Real	User	System	Children user	Children system
+TEST shared
+Malo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	0.01         0.00         0.00         0.00          0.00
+Srednio Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.02         0.00         0.00         0.00          0.00
+search	0.04         0.00         0.00         0.02          0.02
+Duzo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	7.91         0.00         0.00         2.60          5.03
+Dodaj/Usun bloki
+remove	0.00         0.00         0.00         0.00          0.00
+insert	0.04         0.00         0.00         0.02          0.00
+TEST dynamic
+Malo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	0.01         0.00         0.00         0.00          0.00
+Srednio Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.01         0.00         0.00         0.01          0.00
+search	0.04         0.00         0.00         0.01          0.02
+Duzo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	8.02         0.00         0.00         2.67          4.98
+Dodaj/Usun bloki
+remove	0.00         0.00         0.00         0.00          0.00
+insert	0.04         0.00         0.00         0.02          0.01
+TEST static
+Malo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	0.01         0.00         0.00         0.00          0.00
+Srednio Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.01         0.00         0.00         0.01          0.01
+search	0.05         0.00         0.00         0.02          0.01
+Duzo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	7.86         0.00         0.00         2.64          4.90
+Dodaj/Usun bloki
+remove	0.00         0.00         0.00         0.00          0.00
+insert	0.04         0.00         0.00         0.02          0.00
