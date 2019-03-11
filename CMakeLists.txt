@@ -14,13 +14,10 @@ option(TestOptim "TestOptim")
 set(sources zad2/main.c)
 add_executable(static ${sources})
 set_target_properties(static PROPERTIES COMPILE_FLAGS "-Wall ${Optim}")
-
 add_executable(shared ${sources})
 set_target_properties(shared PROPERTIES COMPILE_FLAGS "-ldl -Wall ${Optim}")
-
 add_executable(dynamic ${sources})
 set_target_properties(dynamic PROPERTIES COMPILE_FLAGS "-Wall -D DLL -ldl ${Optim}")
-
 
 add_library(static_find STATIC
         zad1/lib.c

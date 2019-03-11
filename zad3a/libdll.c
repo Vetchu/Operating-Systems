@@ -10,15 +10,20 @@ char* (*_search)(struct DirFile *dirAndFile,char* tmpfile);
 int (*_insert_from_tmp_file)(char **array, unsigned int size, char *tmp_file);
 void (*_remove_block)(char **array, unsigned int size, unsigned int index);
 
-void dll_init() {
+void *dll_init() {
     void *handle = dlopen("./libshared_find.so", RTLD_LAZY);
+    if (handle == NULL) {
+        fputs("Wrong handle", stderr);
+        exit(OTHER_ERROR);
+    }
+
     _setup_temp_file = dlsym(handle, "setup_temp_file");
     _init_array = dlsym(handle, "init_array");
     _set_dir_file = dlsym(handle, "set_dir_file");
     _search = dlsym(handle, "search");
     _insert_from_tmp_file = dlsym(handle, "insert_from_tmp_file");
     _remove_block = dlsym(handle, "remove_block");
-    //dlclose(handle);
+    return handle;
 }
 
 char* setup_temp_file(char* name) {

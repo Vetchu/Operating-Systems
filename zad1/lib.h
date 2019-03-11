@@ -4,6 +4,7 @@
 
 #ifndef ZAD1_LIBRARY_H
 #define ZAD1_LIBRARY_H
+#define OTHER_ERROR -1
 #define ARGUMENT_ERROR -2
 #define TYPE_MISMATCH -3
 

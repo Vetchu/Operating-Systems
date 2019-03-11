@@ -1,16 +1,2 @@
 Real	User	System	Children user	Children system
 Malo Plikow
-remove	0.00         0.00         0.00         0.00          0.00        
-insert	0.00         0.00         0.00         0.00          0.00        
-search	0.02         0.00         0.00         0.01          0.00        
-Srednio Plikow
-remove	0.00         0.00         0.00         0.00          0.00        
-insert	0.01         0.00         0.00         0.01          0.01        
-search	0.06         0.00         0.00         0.02          0.02        
-Duzo Plikow
-remove	0.00         0.00         0.00         0.00          0.00        
-insert	0.00         0.00         0.00         0.00          0.00        
-search	1.99         0.00         0.00         0.83          1.13        
-Dodaj/Usun bloki
-remove	0.00         0.00         0.00         0.00          0.00        
-search	0.04         0.00         0.00         0.02          0.01        

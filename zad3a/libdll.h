@@ -7,6 +7,6 @@
 #include <dlfcn.h>
 #include "../zad1/lib.h"
 
-void dll_init();
+void *dll_init();
 
 #endif //ZAD1_LIBDDL_H
