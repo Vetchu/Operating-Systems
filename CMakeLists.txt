@@ -60,13 +60,13 @@ IF (${Test2})
             COMMAND echo "Dodaj/Usun bloki" >> ${outputfile}
             )
     add_custom_command(TARGET static POST_BUILD
-            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/static 10 search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp output ${outputfile} write insert remove 0 remove 1 remove 2 remove 3 remove 4 remove 5 remove 6 write remove
+            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/static 10 search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp output ${outputfile} write insert remove 0 remove 1 remove 2 remove 3 remove 4 remove 5 remove 6 write remove search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp
             )
 ENDIF()
 
 IF (${Test3})
-    set(outputfile raport3b)
-    set(soutput raport3b)
+    set(outputfile raport3b.txt)
+    set(soutput raport3b.txt)
     file(WRITE ${outputfile} TestOptimizeLevel=${Optim}\n)
     file(APPEND ${outputfile} "Real\tUser\tSystem\tChildren user\tChildren system\n")
 
@@ -97,7 +97,7 @@ IF (${Test3})
             COMMAND echo "Dodaj/Usun bloki" >> ${outputfile}
             )
     add_custom_command(TARGET  ${linktype} POST_BUILD
-            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${linktype} 10 search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp output ${soutput} write insert remove 0 remove 1 remove 2 remove 3 remove 4 remove 5 remove 6 write remove
+            COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${linktype} 10 search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp output ${soutput} write insert remove 0 remove 1 remove 2 remove 3 remove 4 remove 5 remove 6 write remove search /etc/X11 xinitrc tmp insert tmp search /var/log te* tmp insert tmp
             )
 endforeach (linktype)
 ENDIF()
