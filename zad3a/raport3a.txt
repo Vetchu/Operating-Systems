@@ -47,3 +47,7 @@ search	7.86         0.00         0.00         2.64          4.90
 Dodaj/Usun bloki
 remove	0.00         0.00         0.00         0.00          0.00
 insert	0.04         0.00         0.00         0.02          0.00
+
+KOMENTARZ:
+Jak widać z powyższych, sposób linkowania programu wpływa na pogorszenie wydajności w przypadku bibliotek dzielonych:
+dodatkowy czas poświęcany jest na wczytanie potrzebnych programowi bibliotek.
