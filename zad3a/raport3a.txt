@@ -1,0 +1,49 @@
+Real	User	System	Children user	Children system
+TEST shared
+Malo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	0.01         0.00         0.00         0.00          0.00
+Srednio Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.02         0.00         0.00         0.00          0.00
+search	0.04         0.00         0.00         0.02          0.02
+Duzo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	7.91         0.00         0.00         2.60          5.03
+Dodaj/Usun bloki
+remove	0.00         0.00         0.00         0.00          0.00
+insert	0.04         0.00         0.00         0.02          0.00
+TEST dynamic
+Malo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	0.01         0.00         0.00         0.00          0.00
+Srednio Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.01         0.00         0.00         0.01          0.00
+search	0.04         0.00         0.00         0.01          0.02
+Duzo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	8.02         0.00         0.00         2.67          4.98
+Dodaj/Usun bloki
+remove	0.00         0.00         0.00         0.00          0.00
+insert	0.04         0.00         0.00         0.02          0.01
+TEST static
+Malo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	0.01         0.00         0.00         0.00          0.00
+Srednio Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.01         0.00         0.00         0.01          0.01
+search	0.05         0.00         0.00         0.02          0.01
+Duzo Plikow
+removed	0.00         0.00         0.00         0.00          0.00
+insert	0.00         0.00         0.00         0.00          0.00
+search	7.86         0.00         0.00         2.64          4.90
+Dodaj/Usun bloki
+remove	0.00         0.00         0.00         0.00          0.00
+insert	0.04         0.00         0.00         0.02          0.00

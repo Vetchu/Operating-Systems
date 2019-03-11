@@ -7,7 +7,8 @@
 #include <sys/times.h>
 
 #ifdef DLL
-#include "../zad3/libdll.h"
+
+#include "../zad3a/libdll.h"
 #else
 #include "../zad1/lib.h"
 #endif

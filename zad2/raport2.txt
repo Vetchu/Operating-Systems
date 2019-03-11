@@ -1,16 +1,16 @@
 Real	User	System	Children user	Children system
-Test I: mała ilość plików
-Test II: średnia ilość plików
-Test III :duża ilość plików
-Test IV :dodaj/usun 10 blokow
+Malo Plikow
 remove	0.00         0.00         0.00         0.00          0.00        
 insert	0.00         0.00         0.00         0.00          0.00        
-search	0.01         0.00         0.00         0.00          0.00        
+search	0.02         0.00         0.00         0.01          0.00        
+Srednio Plikow
 remove	0.00         0.00         0.00         0.00          0.00        
 insert	0.01         0.00         0.00         0.01          0.01        
-search	0.05         0.00         0.00         0.01          0.02        
+search	0.06         0.00         0.00         0.02          0.02        
+Duzo Plikow
 remove	0.00         0.00         0.00         0.00          0.00        
 insert	0.00         0.00         0.00         0.00          0.00        
-search	8.11         0.00         0.00         2.69          5.15        
+search	1.99         0.00         0.00         0.83          1.13        
+Dodaj/Usun bloki
 remove	0.00         0.00         0.00         0.00          0.00        
-search	0.04         0.00         0.00         0.02          0.00        
+search	0.04         0.00         0.00         0.02          0.01        
