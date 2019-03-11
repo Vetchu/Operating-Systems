@@ -3,7 +3,7 @@ project(zestaw1 C)
 set(CMAKE_C_FLAGS "-std=gnu99")
 set(CMAKE_C_STANDARD 99)
 
-if (NOT ${Optim})
+if (NOT Optim)
     set(Optim -O2)
 endif ()
 
