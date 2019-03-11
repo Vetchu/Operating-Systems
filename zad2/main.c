@@ -56,6 +56,11 @@ long _convert_to_int(char *string) {
 }
 
 int main(int args, char *argv[]) {
+    if (args < 2) {
+        fprintf(stderr, "Brak argumentów! Podano jedynie %d\n", args);
+        return ARGUMENT_ERROR;
+    }
+
 #ifdef DLL
     void *handle = NULL;
     handle = dll_init();
@@ -130,11 +135,6 @@ int main(int args, char *argv[]) {
                     returnval = OTHER_ERROR;
                     i = args;
                 }
-                /*
-                printf("Wpisano do bloku: %d wyniki wyszukiwania w: %s\n",
-                       insert_from_tmp_file(newTable, size, tmp_file),
-                       dirfile->dir);
-                       */
             } else {
                 fprintf(stderr, "Jeszcze nie dokonano nowego wyszukania! Błąd na pozycji %d\n", i);
                 returnval = ARGUMENT_ERROR;
