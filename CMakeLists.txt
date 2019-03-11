@@ -3,7 +3,7 @@ project(zestaw1 C)
 set(CMAKE_C_FLAGS "-std=gnu99")
 set(CMAKE_C_STANDARD 99)
 
-if (NOT Optim)
+if (NOT ${Optim})
     set(Optim -O2)
 endif ()
 
@@ -22,6 +22,7 @@ set_target_properties(dynamic PROPERTIES COMPILE_FLAGS "-Wall -D DLL -ldl ${Opti
 add_library(static_find STATIC zad1/lib.c)
 add_library(shared_find SHARED zad1/lib.c)
 add_library(dll SHARED zad3a/libdll.c)
+add_dependencies(dynamic shared_find)
 TARGET_LINK_LIBRARIES(static static_find)
 TARGET_LINK_LIBRARIES(shared shared_find ${CMAKE_DL_LIBS})
 TARGET_LINK_LIBRARIES(dynamic dll ${CMAKE_DL_LIBS})
